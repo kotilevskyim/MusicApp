@@ -102,6 +102,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellViewModel = searchViewModel.cells[indexPath.row]
+        print("cellViewModel.trackName:" , cellViewModel.trackName)
+        
+        let window = UIApplication.shared.keyWindow
+        let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailView", owner: self, options: nil)?.first as! TrackDetailView
+        window?.addSubview(trackDetailsView)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 84
     }
@@ -129,6 +138,7 @@ extension SearchViewController: UISearchBarDelegate {
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            
             self.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText: searchText))
         })
         

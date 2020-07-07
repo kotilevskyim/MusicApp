@@ -14,7 +14,7 @@ class FooterView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
         label.textAlignment = .center
-        //        настройка констрентов через код
+        //        настройка constraints через код
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = #colorLiteral(red: 0.631372549, green: 0.6470588235, blue: 0.662745098, alpha: 1)
         return label
